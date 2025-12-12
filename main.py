@@ -1,15 +1,18 @@
 from pathlib import Path
+import csv
 
-# Define folder
-data_dir = Path("data")
-data_dir.mkdir(exist_ok=True)  # Create folder if it doesn't exist
+# Path to the CSV file
+students_path = Path("data/students.csv")
 
-# Define file
-hello_file = data_dir / "hello.txt"
+# Read CSV as dictionaries
+students = []  # to store all student records
+with students_path.open("r") as f:
+    reader = csv.DictReader(f)
+    for row in reader:
+        # Convert score to int before storing
+        row["score"] = int(row["score"])
+        students.append(row)
 
-# Write text to file
-hello_file.write_text("Hello from Python!")
-
-# Read content
-content = hello_file.read_text()
-print(content)
+# Print to check
+for s in students:
+    print(s)
