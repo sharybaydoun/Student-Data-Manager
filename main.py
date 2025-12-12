@@ -12,7 +12,8 @@ with students_path.open("r") as f:
         # Convert score to int before storing
         row["score"] = int(row["score"])
         students.append(row)
+#  Compute average
+total_score = sum(student["score"] for student in students)
+average_score = total_score / len(students)
+print("Class average:", average_score)
 
-# Print to check
-for s in students:
-    print(s)
