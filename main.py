@@ -1,5 +1,6 @@
 from pathlib import Path
 import csv
+import json
 
 # Path to the CSV file
 students_path = Path("data/students.csv")
@@ -17,3 +18,8 @@ total_score = sum(student["score"] for student in students)
 average_score = total_score / len(students)
 print("Class average:", average_score)
 
+#  Save average to JSON
+average_path = Path("data/average.json")
+
+average_data = {"average_score": average_score}
+average_path.write_text(json.dumps(average_data, indent=4))
